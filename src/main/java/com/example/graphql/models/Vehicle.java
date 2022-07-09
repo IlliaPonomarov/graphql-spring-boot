@@ -3,12 +3,14 @@ package com.example.graphql.models;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
 @EqualsAndHashCode
+@NoArgsConstructor
 @Entity
 @Table(name = "vehicle")
 public class Vehicle {
@@ -30,6 +32,14 @@ public class Vehicle {
     @Column(name = "launch_date")
     private LocalDate launchDate;
     private transient  String formattedDate;
+
+    public Vehicle(String type, String modelCode, String brandName, LocalDate launchDate) {
+        this.type = type;
+        this.modelCode = modelCode;
+        this.brandName = brandName;
+        this.launchDate = launchDate;
+    }
+
     // Getter and setter
     public String getFormattedDate() {
         return getLaunchDate().toString();
